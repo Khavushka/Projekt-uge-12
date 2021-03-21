@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "pretest": "npm install",
+    "test": "node ./bin/www",
     "start": "node ./bin/www"
   },
   "dependencies": {
