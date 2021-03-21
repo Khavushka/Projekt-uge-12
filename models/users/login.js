@@ -25,7 +25,7 @@ exports.getLogin = async function (req) {
 		},null,{});
 		let user = users[0]; //find returnerer array, derfor bruger vi et index
 
-		//console.log(`abc: ${user}`);
+		console.log(`abc: ${user}`);
 		
 			success = await bcrypt.compare(req.body.password, user.password);
 			if (success) {

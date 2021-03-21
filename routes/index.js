@@ -24,7 +24,7 @@ router.get('/userform', function(req, res, next) {
 
 router.post('/userform', function(req, res, next) {
   handleuser.postUsers(req, res, next);
-  res.redirect('/showuser');
+  res.redirect('/');
 });
 
 // Login

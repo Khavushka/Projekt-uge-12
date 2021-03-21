@@ -11,7 +11,8 @@ html
             a(href="/") Home
           li
             a(href="/userform") Register user
-          li
-            a(href="/") Login
+          if authenticated
+            li
+              a(href="/") To do
     main
     block content
