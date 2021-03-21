@@ -2,4 +2,19 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+        if tf
+                        p= tf
+        else
+                form(id='reguser' action='/' method='post')
+                        table
+                                tr
+                                        td UserId
+                                        td
+                                                input(type='text' name='uid' required)
+                                        td Password
+                                        td
+                                        td
+                                                input(type='text' name='password' required)
+                                        td
+                                        td
+                                                input(type='submit' value='Go')
