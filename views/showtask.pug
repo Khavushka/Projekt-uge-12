@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1= title
+    p Show tasks here
+    main
+    table
+        each task in tasks
+            tr
+                td #{task.title}
+                td #{task.description}
+                td #{task.expires}
+                td #{task.priority}
+                td #{task.status}

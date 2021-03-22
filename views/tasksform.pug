@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	h1= title
+	p To do list
+	form(id='tasks' action='/tasksform' method='post')
+		table
+			tr
+				td Task title
+				td
+					input(type='text' name='title' required)
+			tr
+				td Description
+				td
+					input(type='text' name='description' required)
+			tr
+				td Expiration date
+				td
+					input(type='date' name='expires' required)
+            tr
+				td Persons on the task
+				td
+					input(type='number' name='pid' required)
+            tr
+				td Task priority
+				td
+					input(type='string' name='priority' required)
+            tr
+				td Task status
+				td
+					input(type='string' name='status' required)
+			tr
+				td
+				td
+					input(type='submit' value='Go')

@@ -3,15 +3,12 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-   // id: Number,
     password: String,
-    cpr: Number,
-    currentpenalties: Number,
     email: {type: String, unique: true},
     firstname: String,
-    middlename: String,
+    middlename: {type: String, required: false}, //middlename is optional
     lastname: String,
-    newsletter: Boolean
+    role: String
 })
 
 module.exports = mongoose.model("User", userSchema, 'persons');

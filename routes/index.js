@@ -3,6 +3,7 @@ var router = express.Router();
 const TITLE = 'To Do project';
 const handleuser = require('../models/users/handleUser');
 const login = require('../models/users/login');
+const handleTasks = require('../models/tasks/handleTask');
 const session = require('express-session');
 
 //Get home page
@@ -19,7 +20,7 @@ router.get('/userform', function(req, res, next) {
   res.render('userform', {
     title: TITLE,
     subtitle: 'User form',
-    authenticated: req.session && req.session.authenticated });
+    authenticated: req.session && req.session.authenticated});
 });
 
 router.post('/userform', function(req, res, next) {
@@ -50,6 +51,33 @@ await login.getLogin(req)
 router.get('/logout', function(req, res, next){
   req.session.destroy();
   res.render('logout');
+});
+
+//Tasks
+router.get('/showtask', async function(req, res, next){
+  let tasks = await handleTasks.getTask({}, {sort: {title: 1}});
+
+  res.render('showtask', {
+    title: TITLE,
+    subtitle: 'Display Tasks',
+    authenticated: req.session && req.session.authenticated,
+    tasks});
+});
+
+router.post('/showtask', async function(req, res, next){
+  let tasks = await handleTasks.getTask();
+})
+
+router.get('/tasksform', async function(req, res, next){
+  res.render('tasksform', {
+    title: TITLE, 
+    subtitle: 'Tasks Entry Form',
+    authenticated: req.session && req.session.authenticated});
+});
+
+router.post('/tasksform', async function(req, res, next){
+  await handleTasks.postTask(req, res, next);
+  res.redirect('/showtask');
 });
 
 module.exports = router;

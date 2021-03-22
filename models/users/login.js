@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const mongoose = require("mongoose");
 const { compileClientWithDependenciesTracked } = require("pug");
-const dbName = "library";
+const dbName = "todo";
 const CONSTR = `mongodb://localhost:27017/${dbName}`;
 const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
 

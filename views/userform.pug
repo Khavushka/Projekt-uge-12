@@ -6,14 +6,6 @@ block content
 	form(id='reguser' action='/userform' method='post')
 		table
 			tr
-				td Password
-				td
-					input(type='text' name='password' required)
-			tr
-				td CPR
-				td
-					input(type='text' name='cpr' required)
-			tr
 				td Email
 				td
 					input(type='text' name='email' required)
@@ -24,15 +16,15 @@ block content
 			tr
 				td Middle Name
 				td
-					input(type='text' name='middlename' required)
+					input(type='text' name='middlename' optional)
 			tr
 				td Last Name
 				td
 					input(type='text' name='lastname' required)
 			tr
-				td Newsletter
+				td Password
 				td
-					input(type='checkbox' name='newsletter' required)
+					input(type='text' name='password' required)
 			tr
 				td
 				td

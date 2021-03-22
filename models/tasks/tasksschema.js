@@ -3,10 +3,12 @@
 const mongoose = require('mongoose');
 
 const tasksSchema = mongoose.Schema({
-    // id: Number,
-     taskname: String,
-     date: Number,
-     month: String,
+     title: String,
+     description: String,
+     expires: Date,
+     pid: Number,
+     priority: String,
+     status: String
  })
  
  module.exports = mongoose.model("Tasks", tasksSchema, 'tasks');

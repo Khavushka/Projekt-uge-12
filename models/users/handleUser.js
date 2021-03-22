@@ -1,10 +1,10 @@
 'use strict';
 
-const User = require("./usersschema");
+const User = require("./personsschema");
 const bcrypt = require('bcryptjs'); 
 
 const dbServer ='localhost';
-const dbName = "library";
+const dbName = "todo";
 
 exports.getUsers = async function (que, sort) {
     if (sort === null)
@@ -17,11 +17,10 @@ exports.getUsers = async function (que, sort) {
     }
 }
 
-exports.postUsers = async function (req) {
-    let chk = { id: req.body.id };  // check object for existence
+exports.postUsers = async function (req) { // Register users
+    let chk = { email: req.body.email };  // check object for existence
     let user = new User({                     // create object in db-format
         password: req.body.password,
-        cpr: req.body.cpr,
         email: req.body.email,
         firstname: req.body.firstname,
         middlename: req.body.middlename,
@@ -33,7 +32,7 @@ exports.postUsers = async function (req) {
     user.password = pwd;
     //console.log(req.body.password);
     try {
-        let cs = await mon.upsert("localhost", "library", User, user, chk); // Tager fat i mongoose db
+        let cs = await mon.upsert("localhost", "todo", User, user, chk); // Tager fat i mongoose db
         return;
     } catch (e) {
         console.log(e);
