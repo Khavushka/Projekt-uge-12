@@ -66,16 +66,16 @@ router.get('/showtask', async function(req, res, next){
 
 router.post('/showtask', async function(req, res, next){
   let tasks = await handleTasks.getTask();
-})
+});
 
-router.get('/tasksform', async function(req, res, next){
-  res.render('tasksform', {
+router.get('/taskform', async function(req, res, next){
+  res.render('taskform', {
     title: TITLE, 
     subtitle: 'Tasks Entry Form',
     authenticated: req.session && req.session.authenticated});
 });
 
-router.post('/tasksform', async function(req, res, next){
+router.post('/taskform', async function(req, res, next){
   await handleTasks.postTask(req, res, next);
   res.redirect('/showtask');
 });

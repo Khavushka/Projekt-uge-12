@@ -6,13 +6,14 @@ const dbName = "todo";
 const CONSTR = `mongodb://localhost:27017/${dbName}`;
 const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
 
+
+
 exports.getTask = async function (que, sort) {
     await mongoose.connect(CONSTR, CONPARAM);
-	const db = mongoose.connection;
-	db.once("open", function() {
-		console.log("connected to server by mongoose")
-	});
-
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
     if (sort === null)
         sort = {sort: {name: 1}};
     try {
@@ -21,10 +22,15 @@ exports.getTask = async function (que, sort) {
         return tasks;
     } catch (e) {
         console.log(e);
-    }
+    } db.close();
 }
 
 exports.postTask = async function (req) {
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
     let chk = { title: req.body.title };  // check object for existence
     let task = new Task({                     // create object in db-format
         title: req.body.title,
@@ -35,10 +41,9 @@ exports.postTask = async function (req) {
         status: req.body.status
     });
 
-    try {
-        let cs = await mon.upsert("localhost", "todo", Task, task, chk); // Tager fat i mongoose db
-        return;
-    } catch (e) {
-        console.log(e);
-    }
+    Task.create(task, function(error, savedDocument) { //create er en mongoose funktion
+        if (error) {
+            console.log(error);
+            } db.close();
+        });
 }

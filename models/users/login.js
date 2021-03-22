@@ -40,5 +40,5 @@ exports.getLogin = async function (req) {
 			return success;			
     }catch(e) {
 		console.log(e.message);
-	}
+	} db.close();
 }

@@ -16,7 +16,7 @@ exports.getUsers = async function (que, sort) {
         return cs;
     } catch (e) {
         console.log(e);
-    }
+    } db.close();
 }
 
 exports.postUsers = async function (req) { // Register users
@@ -39,7 +39,7 @@ exports.postUsers = async function (req) { // Register users
     //console.log(pwd);
     user.password = pwd;
     //console.log(req.body.password);
-    User.create(user, function(error, savedDocument) { 
+    User.create(user, function(error, savedDocument) { //create er en mongoose funktion
     if (error) {
         console.log(error);
         } db.close();

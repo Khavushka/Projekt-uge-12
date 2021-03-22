@@ -6,7 +6,7 @@ const tasksSchema = mongoose.Schema({
      title: String,
      description: String,
      expires: Date,
-     pid: Number,
+     pid: String,
      priority: String,
      status: String
  })

@@ -3,7 +3,7 @@ extends layout
 block content
 	h1= title
 	p To do list
-	form(id='tasks' action='/tasksform' method='post')
+	form(id='task' action='/taskform' method='post')
 		table
 			tr
 				td Task title
@@ -17,15 +17,15 @@ block content
 				td Expiration date
 				td
 					input(type='date' name='expires' required)
-            tr
+			tr
 				td Persons on the task
 				td
 					input(type='number' name='pid' required)
-            tr
+			tr
 				td Task priority
 				td
 					input(type='string' name='priority' required)
-            tr
+			tr
 				td Task status
 				td
 					input(type='string' name='status' required)
