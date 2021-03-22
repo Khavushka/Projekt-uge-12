@@ -1,14 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-position: center;
   background-size: cover;
   font-size: calc(14px + 0.25vw);
   line-height: 1.5;
   padding: 5px;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
 }
 
 nav ul {

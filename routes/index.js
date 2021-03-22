@@ -13,7 +13,16 @@ router.get('/', function(req, res, next){
                 subtitle: 'Front Page',
                 authenticated: req.session && req.session.authenticated});
 });
+//godkendelse af brugere
+router.get('/approveuser', async function(req, res, next){
+  let users = await handleuser.getUsers({}, {sort: {title: 1}});
 
+  res.render('approveuser', {
+    title: TITLE,
+    subtitle: 'Display user for approvement',
+    authenticated: req.session && req.session.authenticated,
+    users});
+});
 //registrering af brugere
 
 router.get('/userform', async function(req, res, next) {

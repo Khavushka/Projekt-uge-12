@@ -13,9 +13,11 @@ html
             a(href="/userform") Register user
           if authenticated
             li
+              a(href="/approveuser") Approve users
+            li
               a(href="/showtask") Show task
             li
-              a(href="/taskform") Register Task      
+              a(href="/taskform") Register task      
             li 
               a(href="/logout") Logout    
           if !authenticated

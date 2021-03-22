@@ -18,17 +18,19 @@ block content
 				td
 					input(type='date' name='expires' required)
 			tr
-				td Persons on the task
-				td
-					input(type='number' name='pid' required)
-			tr
 				td Task priority
 				td
-					input(type='string' name='priority' required)
+					select(type='string' name='priority' required)
+						option(value="high") High
+						option(value="medium") Medium
+						option(value="low") Low
 			tr
 				td Task status
 				td
-					input(type='string' name='status' required)
+					select(type='string' name='status' required)
+						option(value="do") To do
+						option(value="doing") Doing
+						option(value="done") Done
 			tr
 				td
 				td
