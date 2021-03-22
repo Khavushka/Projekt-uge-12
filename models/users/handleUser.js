@@ -2,9 +2,11 @@
 
 const User = require("./usersschema");
 const bcrypt = require('bcryptjs'); 
+const mongoose = require('mongoose');
 
-const dbServer ='localhost';
 const dbName = "todo";
+const CONSTR = `mongodb://localhost:27017/${dbName}`;
+const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
 
 exports.getUsers = async function (que, sort) {
     if (sort === null)
@@ -18,7 +20,13 @@ exports.getUsers = async function (que, sort) {
 }
 
 exports.postUsers = async function (req) { // Register users
-    let chk = { email: req.body.email };  // check object for existence
+
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
+
     let user = new User({                     // create object in db-format
         password: req.body.password,
         email: req.body.email,
@@ -31,10 +39,9 @@ exports.postUsers = async function (req) { // Register users
     //console.log(pwd);
     user.password = pwd;
     //console.log(req.body.password);
-    try {
-        let cs = await mon.upsert("localhost", "todo", User, user, chk); // Tager fat i mongoose db
-        return;
-    } catch (e) {
-        console.log(e);
-    }
+    User.create(user, function(error, savedDocument) { 
+    if (error) {
+        console.log(error);
+        } db.close();
+    });
 }
