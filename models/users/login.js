@@ -2,7 +2,7 @@
 const User = require("./usersschema");
 const bcrypt = require('bcryptjs'); 
 const session = require('express-session');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { compileClientWithDependenciesTracked } = require("pug");
 const dbName = "todo";
 const CONSTR = `mongodb://localhost:27017/${dbName}`;
@@ -17,12 +17,15 @@ exports.getLogin = async function (req) {
 	db.once("open", function() {
 		console.log("connected to server by mongoose")
 	});
-
+	
 	let success = false;
+
     try {
+		console.log(User);
 		let users = await User.find({
-				email: req.body.email
+			email: req.body.email
 		},null,{});
+		console.log(users); 
 		let user = users[0]; //find returnerer array, derfor bruger vi et index
 
 		console.log(`abc: ${user}`);
@@ -35,7 +38,7 @@ exports.getLogin = async function (req) {
 				req.session.destroy(); //Kan bruges til logout
 			}
 			return success;
-		
+			
     }catch(e) {
 		console.log(e.message);
 	}

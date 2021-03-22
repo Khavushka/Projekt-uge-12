@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require("./personsschema");
+const User = require("./usersschema");
 const bcrypt = require('bcryptjs'); 
 
 const dbServer ='localhost';
