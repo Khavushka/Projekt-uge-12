@@ -37,8 +37,7 @@ exports.getLogin = async function (req) {
 			} else {
 				req.session.destroy(); //Kan bruges til logout
 			}
-			return success;
-			
+			return success;			
     }catch(e) {
 		console.log(e.message);
 	}
