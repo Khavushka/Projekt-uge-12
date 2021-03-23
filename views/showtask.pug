@@ -6,7 +6,7 @@ block content
     main
     table
         each task in tasks
-            tr
+            tr(ondrop="drop(event)" ondragover="allowDrop(event)")
                 td #{task.title}
                 td #{task.description}
                 td #{task.expires}

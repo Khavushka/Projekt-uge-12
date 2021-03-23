@@ -14,8 +14,8 @@ block content
                 td #{user.role}
                 td
                     form(id='reguser' action='/approveuser' method='post')
-                        select
-                            option(value="verify") verify
-                            option(value="unverify") unverify
-                            option(value="admin") verify admin
+                        select(name="userrole")
+                            option(value="verify") Verify
+                            option(value="delete") Delete
+                            option(value="admin") Admin
                         input(type="submit" value="Go") 
