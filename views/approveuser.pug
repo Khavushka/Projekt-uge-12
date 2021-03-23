@@ -12,10 +12,14 @@ block content
                 td #{user.middlename}
                 td #{user.lastname}
                 td #{user.role}
-                td
-                    form(id='reguser' action='/approveuser' method='post')
-                        select(name="userrole")
-                            option(value="verify") Verify
-                            option(value="delete") Delete
-                            option(value="admin") Admin
-                        input(type="submit" value="Go") 
+                
+            tr
+                form(id='reguser' action='/approveuser' method='post')
+                    select(name="useremail")
+                            option(value=user.email) #{user.email}
+
+                    select(name="userrole")
+                        option(value="verify") Verify
+                        option(value="delete") Delete
+                        option(value="admin") Admin
+                    input(type="submit" value="Go") 

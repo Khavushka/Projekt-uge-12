@@ -21,10 +21,12 @@ exports.getUsers = async function (que, sort) {
         // await er asynkront og venter, til den får info
         let users = await User.find({
             role: "unverified"}, null,{});  // await er asynkront og venter, til den får info
+        let emails = User.email;
         return users;
     } catch (e) {
         console.log(e);
     } db.close();
+    console.log(emails);
 }
 
 exports.postUsers = async function (req) { // Register users
@@ -64,25 +66,25 @@ exports.postApproveUsers = async function (req) { // Register users
     });
 
     if (req.body.userrole === "delete") {
-    await User.findOneAndDelete({ email: req.body.email })
+    await User.findOneAndDelete({ email: req.body.useremail })
     .then(function(){console.log("Data deleted");})
     .catch(function(error){console.log(error); // Failure
     });
 
     } else if(req.body.userrole === "verify") {
-    await User.findOneAndUpdate({email:req.body.email}, {role: "verified"})
+    await User.findOneAndUpdate({email:req.body.useremail}, {role: "verified"})
     .then(function(){console.log("User verified");})
     .catch(function(error){console.log(error); // Failure
     });
     
     } else if(req.body.userrole === "admin") {
-    await User.findOneAndUpdate({email:req.body.email}, {role: "admin"})
+    await User.findOneAndUpdate({email:req.body.useremail}, {role: "admin"})
     .then(function(){console.log("User admin");})
     .catch(function(error){console.log(error); // Failure
     });
     }
 
-    console.log(req.body.email);
+    console.log(req.body.useremail);
     //console.log(req.body.password);
     // if (error) {
     //     console.log(error);
