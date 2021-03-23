@@ -1,4 +1,4 @@
-/* * {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,8 +8,8 @@ body {
   background-position: center;
   background-size: cover;
   font-size: calc(14px + 0.25vw);
-  line-height: 1.5;
   padding: 5px;
+  font-family: Arial, sans-serif;
 }
 
 nav ul {
@@ -24,16 +24,15 @@ ul li {
   position: relative;
 }
 ul li a {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 1.25rem;
   text-decoration: none;
   letter-spacing: 1px;
   display: block;
-  padding: 0.5rem 0;
-} */
-
+}
+/* 
 /*Strip the ul of padding and list styling*/
-ul {
+/* ul {
   list-style-type:none;
   margin:0;
   padding:0;
@@ -41,15 +40,14 @@ ul {
 }
 /*Create a horizontal list with spacing*/
 li {
-  display:inline-block;
-  float: left;
+  display: inline-block;
   margin-right: 1px;
 }
 
 /*Style for menu links*/
 li a {
-  display:block;
-  min-width:140px;
+  display: block;
+  min-width: 140px;
   height: 50px;
   text-align: center;
   line-height: 50px;
@@ -91,11 +89,19 @@ li ul li a {
   padding: 0 20px;
 }
 /*Display the dropdown on hover*/
-ul li a:hover + .hidden, .hidden:hover {
+ul li a:hover + .hidden,
+.hidden:hover {
   display: block;
 }
 
-/**/
+/*Text*/
 h1 {
-  padding: 60px;
+  padding: 20px;
+  text-align: center;
+}
+
+/*Logout*/
+.ud {
+  font-size: 25px;
+  text-align: center;
 }

@@ -12,9 +12,10 @@ block content
                 td #{user.middlename}
                 td #{user.lastname}
                 td #{user.role}
-                    select
-                        form(id='reguser' action='/approveuser' method='post')
+                td
+                    form(id='reguser' action='/approveuser' method='post')
+                        select
                             option(value="verify") verify
                             option(value="unverify") unverify
                             option(value="admin") verify admin
-                    button(type="submit") Go
+                        input(type="submit" value="Go") 

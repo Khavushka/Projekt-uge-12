@@ -73,16 +73,16 @@ exports.postApproveUsers = async function (req) { // Register users
         role: req.body.role});         // create object in db-format
     
     } else if(req.body.role = "verify") {
-    User.updateOne({
-        role: "verified"
-    });
-        
-    };
+    User.updateOne({role: "verified"});
 
+    } else if(req.body.role = "admin") {
+    User.updateOne({role: "admin"});
+    }
+    console.log(req.body.role);
+    console.log(User.role);
     //console.log(req.body.password);
-    User.create(user, function(error, savedDocument) { //create er en mongoose funktion
-    if (error) {
-        console.log(error);
-        } db.close();
-    });
+    // if (error) {
+    //     console.log(error);
+    //     } 
+        db.close();
 }

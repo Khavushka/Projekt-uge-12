@@ -23,6 +23,12 @@ router.get('/approveuser', async function(req, res, next){
     authenticated: req.session && req.session.authenticated,
     users});
 });
+
+router.post('/approveuser', async function(req, res, next) {
+  handleuser.postApproveUsers(req, res, next);
+  res.redirect('/approveuser');
+});
+
 //registrering af brugere
 
 router.get('/userform', async function(req, res, next) {
