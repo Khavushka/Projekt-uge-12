@@ -63,26 +63,38 @@ exports.postApproveUsers = async function (req) { // Register users
         console.log("connected to server by mongoose")
     });
 
-    if (req.body.userrole = "delete") { // If unverified, delete user
+    if (req.body.userrole === "delete") { // If unverified, delete user
     User.deleteOne({
-        email: req.body.email,
-        password: req.body.password,
-        firstname: req.body.firstname,
-        middlename: req.body.middlename,
-        lastname: req.body.lastname,
-        role: req.body.userrole});         // create object in db-format
-    
-    } else if(req.body.userrole = "verify") {
-    User.updateOne({role: "verified", email:req.body.email});
+        email: req.body.email
+    },
+        function(error) {
+            if(error) {
+                console.log(error);
+            }
+        });
 
-    } else if(req.body.userrole = "admin") {
-    User.updateOne({role: "admin", email:req.body.email});
+    } else if(req.body.userrole === "verify") {
+    
+    User.updateOne({role: "verified", email:req.body.email},
+    function(error) {
+        if(error) {
+            console.log(error);
+        }
+    });
+    console.log(req.body.userrole);
+    } else if(req.body.userrole === "admin") {
+    User.updateOne({role: "admin", email:req.body.email},
+    function(error) {
+        if(error) {
+            console.log(error);
+        }
+    });
+    console.log(req.body.userrole);
     }
-    console.log(req.body);
     console.log(User.role);
     //console.log(req.body.password);
     // if (error) {
     //     console.log(error);
     //     } 
-        db.close();
+    db.close();
 }
