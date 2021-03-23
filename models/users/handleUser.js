@@ -3,7 +3,6 @@
 const User = require("./usersschema");
 const bcrypt = require('bcryptjs'); 
 const mongoose = require('mongoose');
-
 const dbName = "todo";
 const CONSTR = `mongodb://localhost:27017/${dbName}`;
 const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
