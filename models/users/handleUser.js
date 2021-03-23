@@ -63,35 +63,26 @@ exports.postApproveUsers = async function (req) { // Register users
         console.log("connected to server by mongoose")
     });
 
-    if (req.body.userrole === "delete") { // If unverified, delete user
-    User.deleteOne({
-        email: req.body.email
-    },
-        function(error) {
-            if(error) {
-                console.log(error);
-            }
-        });
+    if (req.body.userrole === "delete") {
+    await User.findOneAndDelete({ email: req.body.email })
+    .then(function(){console.log("Data deleted");})
+    .catch(function(error){console.log(error); // Failure
+    });
 
     } else if(req.body.userrole === "verify") {
+    await User.findOneAndUpdate({email:req.body.email}, {role: "verified"})
+    .then(function(){console.log("User verified");})
+    .catch(function(error){console.log(error); // Failure
+    });
     
-    User.updateOne({role: "verified", email:req.body.email},
-    function(error) {
-        if(error) {
-            console.log(error);
-        }
-    });
-    console.log(req.body.userrole);
     } else if(req.body.userrole === "admin") {
-    User.updateOne({role: "admin", email:req.body.email},
-    function(error) {
-        if(error) {
-            console.log(error);
-        }
+    await User.findOneAndUpdate({email:req.body.email}, {role: "admin"})
+    .then(function(){console.log("User admin");})
+    .catch(function(error){console.log(error); // Failure
     });
-    console.log(req.body.userrole);
     }
-    console.log(User.role);
+
+    console.log(req.body.email);
     //console.log(req.body.password);
     // if (error) {
     //     console.log(error);
