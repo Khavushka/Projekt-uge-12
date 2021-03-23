@@ -65,19 +65,19 @@ exports.postApproveUsers = async function (req) { // Register users
         console.log("connected to server by mongoose")
     });
 
-    if (req.body.userrole === "delete") {
+    if (req.body.userrole === "delete") { // If user is given delete role by admin, delete the user
     await User.findOneAndDelete({ email: req.body.useremail })
     .then(function(){console.log("Data deleted");})
     .catch(function(error){console.log(error); // Failure
     });
 
-    } else if(req.body.userrole === "verify") {
+    } else if(req.body.userrole === "verify") {  // Verifies the user
     await User.findOneAndUpdate({email:req.body.useremail}, {role: "verified"})
     .then(function(){console.log("User verified");})
     .catch(function(error){console.log(error); // Failure
     });
     
-    } else if(req.body.userrole === "admin") {
+    } else if(req.body.userrole === "admin") { // Gives user admin rights/role
     await User.findOneAndUpdate({email:req.body.useremail}, {role: "admin"})
     .then(function(){console.log("User admin");})
     .catch(function(error){console.log(error); // Failure

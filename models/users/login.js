@@ -33,7 +33,8 @@ exports.getLogin = async function (req) {
 			success = await bcrypt.compare(req.body.password, user.password);
 			if (success) {
 				req.session.authenticated = true;
-				//req.session.user = user.firstName;
+				req.session.user = user.role;
+				console.log(req.session.user);
 			} else {
 				req.session.destroy(); //Kan bruges til logout
 			}

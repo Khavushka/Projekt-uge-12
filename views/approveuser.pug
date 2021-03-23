@@ -16,7 +16,7 @@ block content
             tr
                 form(id='reguser' action='/approveuser' method='post')
                     select(name="useremail")
-                            option(value=user.email) #{user.email}
+                            option(value=user.email) #{user.email} 
 
                     select(name="userrole")
                         option(value="verify") Verify
