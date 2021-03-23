@@ -5,15 +5,13 @@ block content
         if tf
                         p= tf
         else
-                form(id='reguser' action='/' method='post')
+        #main
+                form.fork(id='reguser' action='/' method='post')
                         table
-                                tr.login
-                                        td.login-triangle
-                                                td.login-header
-                                                        td.login-container
-                                                                td User Email
-                                                                        input(type='text' name='email' required)
-                                                                td Password
-                                                                        input(type='text' name='password' required)
-                                                                td
-                                                                        input(type='submit' value='Go')
+                                tr.label
+                                        td User Email
+                                                input.email(type='text' name='email' required)
+                                        td Password
+                                                input.password(type='text' name='password' required)
+                                        td
+                                                input.button(type='submit' value='Go')
