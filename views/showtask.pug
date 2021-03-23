@@ -4,11 +4,11 @@ block content
     h1= title
     p Show tasks here
     main
-    table
+    table.projekt-container
         each task in tasks
-            tr(ondrop="drop(event)" ondragover="allowDrop(event)")
-                td #{task.title}
-                td #{task.description}
-                td #{task.expires}
-                td #{task.priority}
-                td #{task.status}
+                tr.projekt-task
+                    td.task-title #{task.title}
+                    td #{task.description}
+                    td #{task.expires}
+                    td #{task.priority}
+                    td #{task.status}
