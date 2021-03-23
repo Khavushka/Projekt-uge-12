@@ -4,28 +4,30 @@ block content
 	h1= title
 	p Please register
 	form(id='reguser' action='/userform' method='post')
-		table
-			tr
-				td Email
-				td
-					input(type='text' name='email' required)
-			tr
-				td First Name
-				td
-					input(type='text' name='firstname' required)
-			tr
-				td Middle Name
-				td
-					input(type='text' name='middlename' optional)
-			tr
-				td Last Name
-				td
-					input(type='text' name='lastname' required)
-			tr
-				td Password
-				td
-					input(type='text' name='password' required)
-			tr
-				td
-				td
-					input(type='submit' value='Go')
+		div.login
+			div.login-container
+				div.login-header
+					tr
+						td Email
+						td
+							input(type='text' name='email' required)
+					tr
+						td First Name
+						td
+							input(type='text' name='firstname' required)
+					tr
+						td Middle Name
+						td
+							input(type='text' name='middlename' optional)
+					tr
+						td Last Name
+						td
+							input(type='text' name='lastname' required)
+					tr
+						td Password
+						td
+							input(type='text' name='password' required)
+					tr
+						td
+						td
+							input(type='submit' value='Go')

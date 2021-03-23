@@ -31,14 +31,7 @@ ul li a {
   letter-spacing: 1px;
   display: block;
 }
-/* 
-/*Strip the ul of padding and list styling*/
-/* ul {
-  list-style-type:none;
-  margin:0;
-  padding:0;
-  position: absolute;
-}
+
 /*Create a horizontal list with spacing*/
 li {
   display: inline-block;
@@ -138,6 +131,7 @@ h1 {
   width: 400px;
   margin: 16px auto;
   font-size: 16px;
+  opacity: 0.8;
 }
 
 /* Reset top and bottom margins from certain elements */
@@ -206,4 +200,10 @@ h1 {
 /* Buttons' focus effect */
 .login input[type="submit"]:focus {
   border-color: #05a;
+}
+
+p {
+  font-size: 25px;
+  font-style: italic;
+  text-align: center;
 }

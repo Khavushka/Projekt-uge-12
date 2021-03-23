@@ -4,18 +4,13 @@ block content
     h1= title
     p Show tasks here
     main
-        table.projekt-container
-                tr.column
-                    tr
-                        th To do
-                    tr
-                        th Doing
-                    tr
-                    th Done
+        div.login
                 each task in tasks
-                        tr.projekt-task
-                            td.task-title #{task.title}
-                            td #{task.description}
-                            td #{task.expires}
-                            td #{task.priority}
-                            td #{task.status}
+                    div.login-container
+                        div.login-header
+                            tr
+                                td #{task.title}
+                                td #{task.description}
+                                td #{task.expires}
+                                td #{task.priority}
+                                td #{task.status}
