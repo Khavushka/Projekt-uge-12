@@ -11,7 +11,9 @@ router.get('/', function(req, res, next){
   res.render('index', {
                 title: TITLE, 
                 subtitle: 'Front Page',
-                authenticated: req.session && req.session.authenticated});
+                authenticated: req.session && req.session.authenticated,
+                admin: req.session.role == "admin" ? true : false //Tjekker efter admin role. Gentages på alle sider.
+              });
 });
 //godkendelse af brugere
 router.get('/approveuser', async function(req, res, next){
@@ -21,12 +23,32 @@ router.get('/approveuser', async function(req, res, next){
     title: TITLE,
     subtitle: 'Display user for approvement',
     authenticated: req.session && req.session.authenticated,
-    users});
+    users,
+    admin: req.session.role == "admin" ? true : false});
 });
 
 router.post('/approveuser', async function(req, res, next) {
   handleuser.postApproveUsers(req, res, next);
   res.redirect('/approveuser');
+});
+
+// verify user
+router.get('/verify/:email', async function(req, res, next){
+  handleuser.verifyUser(req.params.email); //Email bruges som parameter til at slette bruger
+  res.redirect('/');
+});
+
+// verify admin
+router.get('/admin/:email', async function(req, res, next){
+  handleuser.adminUser(req.params.email); //Email bruges som parameter til at slette bruger. Params = URL
+  res.redirect('/');
+});
+
+// slet bruger
+router.get('/delete/:email', async function(req, res, next){
+  
+  handleuser.deleteUser(req.params.email); //Email bruges som parameter til at slette bruger
+  res.redirect('/');
 });
 
 //registrering af brugere
@@ -35,7 +57,8 @@ router.get('/userform', async function(req, res, next) {
   res.render('userform', {
     title: TITLE,
     subtitle: 'User form',
-    authenticated: req.session && req.session.authenticated});
+    authenticated: req.session && req.session.authenticated,
+    admin: req.session.role == "admin" ? true : false});
 });
 
 router.post('/userform', async function(req, res, next) {
@@ -48,7 +71,8 @@ router.get('/', function(req, res, next){
   res.render('login', {
       title: TITLE,
       subtitle: 'Login',
-      authenticated: req.session && req.session.authenticated});
+      authenticated: req.session && req.session.authenticated,
+      admin: req.session.role == "admin" ? true : false});
 });
 
 router.post('/', async function(req, res, next) {
@@ -58,7 +82,8 @@ await login.getLogin(req)
       res.render('index', { title: 'Login', tf: "Login failed", returnCode: rc });// tf hvis bruger ikke findes
     else	
       res.render('index', { title: 'Login', tf: "Logged in successfully", 
-      authenticated: req.session && req.session.authenticated, returnCode: rc });
+      authenticated: req.session && req.session.authenticated, returnCode: rc, 
+      admin: req.session.role == "admin" ? true : false });
       });
 });
 
@@ -76,7 +101,8 @@ router.get('/showtask', async function(req, res, next){
     title: TITLE,
     subtitle: 'Display Tasks',
     authenticated: req.session && req.session.authenticated,
-    tasks});
+    tasks,
+    admin: req.session.role == "admin" ? true : false});
 });
 
 router.post('/showtask', async function(req, res, next){
@@ -87,7 +113,8 @@ router.get('/taskform', async function(req, res, next){
   res.render('taskform', {
     title: TITLE, 
     subtitle: 'Tasks Entry Form',
-    authenticated: req.session && req.session.authenticated});
+    authenticated: req.session && req.session.authenticated,
+    admin: req.session.role == "admin" ? true : false});
 });
 
 router.post('/taskform', async function(req, res, next){
