@@ -51,6 +51,12 @@ router.get('/delete/:email', async function(req, res, next){
   res.redirect('/');
 });
 
+//slet task
+router.get('/delete/:task', async function(req, res, next){
+  handleTasks.deleteTask(req);
+  res.redirect('/showtask');
+});
+
 //registrering af brugere
 
 router.get('/userform', async function(req, res, next) {

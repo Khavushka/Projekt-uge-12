@@ -13,7 +13,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/*menu*/
+/*-------------------------menu--------------------*/
 nav ul {
   display: flex;
   list-style: none;
@@ -89,7 +89,7 @@ ul li a:hover + .hidden,
   display: block;
 }
 
-/*Text*/
+/*---------------Text--------------------*/
 h1 {
   padding: 20px;
   text-align: center;
@@ -101,14 +101,13 @@ p {
   text-align: center;
 }
 
-
-/*Logout*/
+/*---------------------Logout--------------------------*/
 .ud {
   font-size: 25px;
   text-align: center;
 }
 
-/*Login*/
+/*-----------------Login--------------------------*/
 .login {
   width: 400px;
   margin: 16px auto;
@@ -184,19 +183,28 @@ p {
   border-color: #05a;
 }
 
+/*------------------Styling Approve/Register/Show task--------------------- */
+
+/* 
 .knapper {
-  padding: 14px 20px;
+  /* padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow:0 10px 4px rgba(0, 0, 0, 0.3);
-}
+  box-shadow:0 10px 4px rgba(0, 0, 0, 0.3); */
 
-.delete .verify .admin{
-  float: left;
-  width: 50%;
+.delete,
+.verify,
+.admin {
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 4px rgba(0, 0, 0, 0.3);
 }
 
 .delete {
@@ -204,7 +212,44 @@ p {
   color: white;
 }
 
-.verify , .admin {
+.verify,
+.admin {
   background-color: white;
   color: black;
+}
+
+/*----------------Show task--------------*/
+[draggable] {
+  position: relative;
+  -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* #columns {
+  display: grid;
+  grid-auto-columns: 272px;
+  grid-auto-flow: column;
+  grid-gap: 8px;
+  height: 100vh;
+  overflow: auto;
+} */
+
+.column {
+  background-color: #E3E3E3;
+  border-radius: 3px;
+  margin: 5px 5px;
+  padding: 10px;
+  width: 260px;
+  display: grid;
+}
+
+
+.column .card {
+  background-color: #FFF;
+  border-bottom: 1px solid #CCC;
+  padding: 6px 8px;
+  cursor: pointer;
 }

@@ -1,16 +1,42 @@
 extends layout
 
 block content
+    script(src="./public/javascripts/page")
+        div
     h1= title
     p Show tasks here
     main
-        div.login
+        ul#columns
                 each task in tasks
-                    div.login-container
-                        div.login-header
-                                div #{task.title}
-                                div #{task.description}
-                                div #{task.expires}
-                                div #{task.pid}
-                                div #{task.priority}
-                                div #{task.status}
+                    div.column To Do
+                        div.card(draggable="true")
+                                    div #{task.title}
+                                    div #{task.description}
+                                    div #{task.expires}
+                                    div #{task.pid}
+                                    div #{task.priority}
+                                    div #{task.status}
+                                        div.delete
+                                            a(href="/delete/") delete
+                    div.column Doing
+                        div.card(draggable="true")
+                                    div #{task.title}
+                                    div #{task.description}
+                                    div #{task.expires}
+                                    div #{task.pid}
+                                    div #{task.priority}
+                                    div #{task.status}
+                                    div
+                                        div.delete
+                                            a(href="/delete/") delete
+                    div.column Done
+                        div.card(draggable="true")
+                                    div #{task.title}
+                                    div #{task.description}
+                                    div #{task.expires}
+                                    div #{task.pid}
+                                    div #{task.priority}
+                                    div #{task.status}
+                                    div
+                                        div.delete
+                                            a(href="/delete/") delete
