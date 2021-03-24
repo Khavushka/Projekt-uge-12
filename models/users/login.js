@@ -30,15 +30,20 @@ exports.getLogin = async function (req) {
 
 		console.log(`abc: ${user}`);
 		
+
 			success = await bcrypt.compare(req.body.password, user.password);
-			if (success) {
+			if (user.role === "unverified") {
+			return !success; // Hvis bruger er unverified = forhindrer login
+			} else if (success) {
 				req.session.authenticated = true;
-				req.session.user = user.role;
-				console.log(req.session.user);
+				req.session.role = user.role;
+				req.session.email = user.email;
+				console.log(req.session.role);
 			} else {
 				req.session.destroy(); //Kan bruges til logout
 			}
-			return success;			
+			return success;	
+
     }catch(e) {
 		console.log(e.message);
 	} db.close();

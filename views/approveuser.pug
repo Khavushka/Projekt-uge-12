@@ -4,22 +4,30 @@ block content
     h1= title
     p Show users here
     main
-    table
-        each user in users
-            tr
-                td #{user.email}
-                td #{user.firstname}
-                td #{user.middlename}
-                td #{user.lastname}
-                td #{user.role}
-                
-            tr
-                form(id='reguser' action='/approveuser' method='post')
-                    select(name="useremail")
-                            option(value=user.email) #{user.email} 
+        div.login
+                each user in users
+                    div.login-container
+                            div.login-header
+                                div #{user.email}
+                                div #{user.firstname}
+                                div #{user.middlename}
+                                div #{user.lastname}
+                                div #{user.role}
+                                div.knapper
+                                    div.delete
+                                        a(href="/delete/" + user.email) delete
+                                    div.verify
+                                        a(href="/verify/" + user.email) verify
+                                    div.admin
+                                        a(href="/admin/" + user.email) admin
+                                            
+                            //- tr
+                            //-     form(id='reguser' action='/approveuser' method='post')
+                            //-         select(name="useremail")
+                            //-             option(value=user.email) #{user.email} 
 
-                    select(name="userrole")
-                        option(value="verify") Verify
-                        option(value="delete") Delete
-                        option(value="admin") Admin
-                    input(type="submit" value="Go") 
+                            //-         select(name="userrole")
+                            //-             option(value="verify") Verify
+                            //-             option(value="delete") Delete
+                            //-             option(value="admin") Admin
+                            //-             input(type="submit" value="Go") 
