@@ -20,7 +20,7 @@ router.get('/approveuser', async function(req, res, next){
   res.render('approveuser', {
     title: TITLE,
     subtitle: 'Display user for approvement',
-    authenticated: req.session && req.session.authenticated,
+    authenticated: req.session && req.session.authenticated && req.session.user.admin,
     users});
 });
 
