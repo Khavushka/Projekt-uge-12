@@ -184,6 +184,27 @@ p {
   border-color: #05a;
 }
 
-div a {
+.knapper {
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow:0 10px 4px rgba(0, 0, 0, 0.3);
+}
+
+.delete .verify .admin{
+  float: left;
+  width: 50%;
+}
+
+.delete {
+  background-color: #f44336;
   color: white;
+}
+
+.verify , .admin {
+  background-color: white;
+  color: black;
 }

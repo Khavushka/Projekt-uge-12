@@ -34,20 +34,20 @@ router.post('/approveuser', async function(req, res, next) {
 
 // verify user
 router.get('/verify/:email', async function(req, res, next){
-  handleuser.verifyUser(req.params.email); //Email bruges som parameter til at slette bruger
+  handleuser.verifyUser(req); //Email bruges som parameter til at slette bruger
   res.redirect('/');
 });
 
 // verify admin
 router.get('/admin/:email', async function(req, res, next){
-  handleuser.adminUser(req.params.email); //Email bruges som parameter til at slette bruger. Params = URL
+  handleuser.adminUser(req); //Email bruges som parameter til at slette bruger. Params = URL
   res.redirect('/');
 });
 
 // slet bruger
 router.get('/delete/:email', async function(req, res, next){
   
-  handleuser.deleteUser(req.params.email); //Email bruges som parameter til at slette bruger
+  handleuser.deleteUser(req); //Email bruges som parameter til at slette bruger
   res.redirect('/');
 });
 
@@ -114,7 +114,9 @@ router.get('/taskform', async function(req, res, next){
     title: TITLE, 
     subtitle: 'Tasks Entry Form',
     authenticated: req.session && req.session.authenticated,
-    admin: req.session.role == "admin" ? true : false});
+    admin: req.session.role == "admin" ? true : false,
+    userid: req.session._id
+    });
 });
 
 router.post('/taskform', async function(req, res, next){
