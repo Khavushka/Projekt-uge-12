@@ -78,8 +78,9 @@ exports.changeTaskDone = async function (req) {
     db.once("open", function() {
         console.log("connected to server by mongoose")
     });
+
     const taskId = req.params._id.toString().trim();
-    await Task.findOneAndUpdate(taskId, {status: "done"})
+    await Task.findByIdAndUpdate(taskId, {status: "done"})
     .then(function(){console.log("Status changed");})
     .catch(function(error){console.log(error); // Failure
     })
@@ -93,8 +94,9 @@ exports.changeTaskDoing = async function (req) {
     db.once("open", function() {
         console.log("connected to server by mongoose")
     });
+
     const taskId = req.params._id.toString().trim();
-    await Task.findOneAndUpdate(taskId, {status: "doing"})
+    await Task.findByIdAndUpdate(taskId, {status: "doing"})
     .then(function(){console.log("Status changed");})
     .catch(function(error){console.log(error); // Failure
     })
@@ -108,7 +110,7 @@ exports.changeTaskDo = async function (req) {
         console.log("connected to server by mongoose")
     });
     const taskId = req.params._id.toString().trim();
-    await Task.findOneAndUpdate(taskId, {status: "do"})
+    await Task.findByIdAndUpdate(taskId, {status: "do"})
     .then(function(){console.log("Status changed");})
     .catch(function(error){console.log(error); // Failure
     })
