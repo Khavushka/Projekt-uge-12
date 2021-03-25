@@ -38,7 +38,9 @@ exports.getLogin = async function (req) {
 				req.session.authenticated = true;
 				req.session.role = user.role;
 				req.session.email = user.email;
+				req.session.userid = user._id;
 				console.log(req.session.role);
+				console.log(req.session.userid);
 			} else {
 				req.session.destroy(); //Kan bruges til logout
 			}

@@ -108,7 +108,9 @@ router.get('/showtask', async function(req, res, next){
     subtitle: 'Display Tasks',
     authenticated: req.session && req.session.authenticated,
     tasks,
-    admin: req.session.role == "admin" ? true : false});
+    userid: req.session._id,
+    admin: req.session.role == "admin" ? true : false
+  });
 });
 
 router.post('/showtask', async function(req, res, next){

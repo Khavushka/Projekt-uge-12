@@ -6,11 +6,11 @@ block content
     h1= title
     p Show tasks here
     main
-        div.container
-            ul#columns
+        div.flex-container
+            div#columns
                     each task in tasks
                         div.column To Do
-                            div.card(draggable="true")
+                            div(draggable="true")
                                         div #{task.title}
                                         div #{task._id}
                                         div #{task.description}
