@@ -242,19 +242,13 @@ p {
   border-radius: 3px;
   margin: 5px 5px;
   padding: 10px;
-  width: 260px;
+}
+
+#columns{
   display: grid;
-}
-
-
-.column .card {
-  background-color: #FFF;
-  border-bottom: 1px solid #CCC;
-  padding: 6px 8px;
-  cursor: pointer;
-}
-
-.container{
-  display: flex;
-  flex-grow: 3;
-}
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+  grid-gap: 20px;
+  align-items: start;
+  }
+  

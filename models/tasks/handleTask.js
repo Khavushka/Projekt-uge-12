@@ -8,15 +8,15 @@ const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
 
 
 
-exports.getTask = async function (que, sort) {
+exports.getTask = async function (req, que, sort) {
     await mongoose.connect(CONSTR, CONPARAM);
     const db = mongoose.connection;
     db.once("open", function() {
         console.log("connected to server by mongoose")
     });
-   
     try {
-        let tasks = await Task.find({}, null,{});  // await er asynkront og venter, til den får info
+        console.log(req.session.userid);
+        let tasks = await Task.find({pid: req.session.userid}, null,{});  // await er asynkront og venter, til den får info
         if (sort === null)
         sort = {sort: -1};
         return tasks;
@@ -24,6 +24,7 @@ exports.getTask = async function (que, sort) {
         console.log(e);
     } db.close();
 }
+
 
 exports.postTask = async function (req) {
     await mongoose.connect(CONSTR, CONPARAM);
@@ -39,7 +40,7 @@ exports.postTask = async function (req) {
         title: req.body.title,
         description: req.body.description,  
         expires: req.body.expires,
-        pid: req.session._id,                  //skal svare til _id på den bruger der er logget ind
+        pid: req.session.userid,                  //skal svare til _id på den bruger der er logget ind
         priority: req.body.priority,
         status: req.body.status
     });
@@ -53,7 +54,7 @@ exports.postTask = async function (req) {
         });
 }
 
-//til at slette
+//til at slette tasks
 
 exports.deleteTask = async function (req){
     await mongoose.connect(CONSTR, CONPARAM);
