@@ -9,36 +9,44 @@ block content
         div.flex-container
             div#columns
                     each task in tasks
-                        div.column To Do
+                        div.column Todo
                             div(draggable="true")
-                                        div #{task.title}
-                                        div #{task._id}
-                                        div #{task.description}
-                                        div #{task.expires}
-                                        div #{task.pid}
-                                        div #{task.priority}
-                                        div #{task.status}
-                                            div.delete
-                                                a(href="/deleteTask/" + task._id) delete
-                        //- div.column Doing
-                        //-     div.card(draggable="true")
-                        //-                 div #{task.title}
-                        //-                 div #{task._id}
-                        //-                 div #{task.description}
-                        //-                 div #{task.expires}
-                        //-                 div #{task.pid}
-                        //-                 div #{task.priority}
-                        //-                 div #{task.status}
-                        //-                     div.delete
-                        //-                         a(href="/delete/" + task._id) delete
-                        //- div.column Done
-                        //-     div.card(draggable="true")
-                        //-                 div #{task.title}
-                        //-                 div #{task._id}
-                        //-                 div #{task.description}
-                        //-                 div #{task.expires}
-                        //-                 div #{task.pid}
-                        //-                 div #{task.priority}
-                        //-                 div #{task.status}
-                        //-                     div.delete
-                        //-                         a(href="/delete/" + task._id) delete
+                                div #{task.title}
+                                div #{task._id}
+                                div #{task.description}
+                                div #{task.expires}
+                                div #{task.pid}
+                                div #{task.priority}
+                                div #{task.status}
+                                    div.todo
+                                        a(href="/todo/" + task._id) do
+                                    div.doing
+                                        a(href="/doing/" + task._id) doing
+                                    div.done
+                                        a(href="/done/" + task._id) done
+                                    div.delete
+                                        a(href="/deleteTask/" + task._id) delete
+                    //- each task in tasks.status === "doing"
+                    //-         div.column Doing
+                    //-             div(draggable="true")
+                    //-                         div #{task.title}
+                    //-                         div #{task._id}
+                    //-                         div #{task.description}
+                    //-                         div #{task.expires}
+                    //-                         div #{task.pid}
+                    //-                         div #{task.priority}
+                    //-                         div #{task.status}
+                    //-                             div.delete
+                    //-                                 a(href="/deleteTask/" + task._id) delete
+                    //- each task in tasks.status === "done"
+                    //-         div.column Done
+                    //-             div(draggable="true")
+                    //-                         div #{task.title}
+                    //-                         div #{task._id}
+                    //-                         div #{task.description}
+                    //-                         div #{task.expires}
+                    //-                         div #{task.pid}
+                    //-                         div #{task.priority}
+                    //-                         div #{task.status}
+                    //-                             div.delete
+                    //-                                 a(href="/deleteTask/" + task._id) delete

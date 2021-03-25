@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    script(src="./public/javascripts/page")
+        div
+    h1= title
+    p Show tasks here
+    main
+        div.flex-container
+            div#columns
+                table.column
+                    each task in tasks
+                        tr
+                            td #{task.title}
+                            td #{task._id}
+                            td #{task.description}
+                            td #{task.expires}
+                            td #{task.pid}
+                            td #{task.priority}
+                            td #{task.status}
+                            td.todo
+                                a(href="/todo/" + task._id) do
+                            td.doing
+                                a(href="/doing/" + task._id) doing
+                            td.done
+                                a(href="/done/" + task._id) done
+                            td.delete
+                                a(href="/deleteTask/" + task._id) delete
+                table.column
+                    each task in dtasks
+                        tr
+                            td #{task.title}
+                            td #{task._id}
+                            td #{task.description}
+                            td #{task.expires}
+                            td #{task.pid}
+                            td #{task.priority}
+                            td #{task.status}
+                            td.todo
+                                a(href="/todo/" + task._id) do
+                            td.doing
+                                a(href="/doing/" + task._id) doing
+                            td.done
+                                a(href="/done/" + task._id) done
+                            td.delete
+                                a(href="/deleteTask/" + task._id) delete

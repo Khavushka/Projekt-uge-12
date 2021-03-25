@@ -219,22 +219,13 @@ p {
 }
 
 /*----------------Show task--------------*/
-[draggable] {
+/* [draggable] {
   position: relative;
   -moz-user-select: -moz-none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -o-user-select: none;
     user-select: none;
-}
-
-/* #columns {
-  display: grid;
-  grid-auto-columns: 272px;
-  grid-auto-flow: column;
-  grid-gap: 8px;
-  height: 100vh;
-  overflow: auto;
 } */
 
 .column {
