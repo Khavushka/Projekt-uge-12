@@ -51,11 +51,6 @@ router.get('/delete/:email', async function(req, res, next){
   res.redirect('/');
 });
 
-//slet task
-router.get('/deleteTask/:_id', async function(req, res, next){
-  handleTasks.deleteTask(req);
-  res.redirect('/showtask');
-});
 
 //registrering af brugere
 
@@ -101,14 +96,17 @@ router.get('/logout', function(req, res, next){
 
 //Tasks
 router.get('/showtask', async function(req, res, next){
-  let tasks = await handleTasks.getTask({}, {sort: {title: 1}});
-
-  res.render('showtask', {
+  let pid = req.session.userid;
+  let tasks = await handleTasks.getTask({pid: pid, status:{$eq:"do"}}, {sort: {title: 1}}); //Sorterer tasks med "do"
+  let dtasks = await handleTasks.getTask({pid: pid, status:{$eq:"doing"}}, {sort: {title: 1}}); //Sorterer tasks med "doing"
+  console.log(tasks);
+  console.log(pid);
+  res.render('showtask1', {
     title: TITLE,
     subtitle: 'Display Tasks',
     authenticated: req.session && req.session.authenticated,
     tasks,
-    userid: req.session._id,
+    dtasks,
     admin: req.session.role == "admin" ? true : false
   });
 });
@@ -122,8 +120,8 @@ router.get('/taskform', async function(req, res, next){
     title: TITLE, 
     subtitle: 'Tasks Entry Form',
     authenticated: req.session && req.session.authenticated,
-    admin: req.session.role == "admin" ? true : false,
-    userid: req.session._id
+    admin: req.session.role == "admin" ? true : false
+    
     });
 });
 
@@ -131,5 +129,28 @@ router.post('/taskform', async function(req, res, next){
   await handleTasks.postTask(req, res, next);
   res.redirect('/showtask');
 });
+
+//slet task
+router.get('/deleteTask/:_id', async function(req, res, next){
+  handleTasks.deleteTask(req);
+  res.redirect('/showtask');
+});
+
+//status
+
+router.get('/todoTask/:status', async function(req, res, next){
+  handleTasks.changeTaskStatus(req);
+  res.redirect('/showtask');
+});
+
+router.get('/doingTask/:status', async function(req, res, next){
+  handleTasks.changeTaskStatus(req);
+  res.redirect('/showtask');
+});
+
+router.get('/doneTask/:status', async function(req, res, next){
+  handleTasks.changeTaskStatus(req);
+  res.redirect('/showtask');
+})
 
 module.exports = router;
