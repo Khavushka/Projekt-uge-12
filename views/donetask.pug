@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1= title
+    p Show tasks here
+    main
+        div.flex-container
+            div#columns
+                table.column
+                    each task in donetasks
+                        tr
+                            td #{task.title}
+                            td #{task.description}
+                            td #{task.expires}
+                            td #{task.priority}
+                            td #{task.status}

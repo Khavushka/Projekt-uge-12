@@ -55,42 +55,6 @@ exports.postUsers = async function (req) { // Register users
     });
 }
 
-// approve users
-// exports.postApproveUsers = async function (req) {
-
-//     await mongoose.connect(CONSTR, CONPARAM);
-//     const db = mongoose.connection;
-//     db.once("open", function() {
-//         console.log("connected to server by mongoose")
-//     });
-
-//     if (req.body.userrole === "delete") { // If user is given delete role by admin, delete the user
-//     await User.findOneAndDelete({ email: req.body.useremail })
-//     .then(function(){console.log("Data deleted");})
-//     .catch(function(error){console.log(error); // Failure
-//     });
-
-//     } else if(req.body.userrole === "verify") {  // Verifies the user
-//     await User.findOneAndUpdate({email:req.body.useremail}, {role: "verified"})
-//     .then(function(){console.log("User verified");})
-//     .catch(function(error){console.log(error); // Failure
-//     });
-    
-//     } else if(req.body.userrole === "admin") { // Gives user admin rights/role
-//     await User.findOneAndUpdate({email:req.body.useremail}, {role: "admin"})
-//     .then(function(){console.log("User admin");})
-//     .catch(function(error){console.log(error); // Failure
-//     });
-//     }
-
-//     console.log(req.body.useremail);
-//     //console.log(req.body.password);
-//     // if (error) {
-//     //     console.log(error);
-//     //     } 
-//     db.close();
-// }
-
 exports.verifyUser = async function(req) {
     await mongoose.connect(CONSTR, CONPARAM);
     const db = mongoose.connection;

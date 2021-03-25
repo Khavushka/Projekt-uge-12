@@ -20,14 +20,3 @@ block content
                                         a(href="/verify/" + user.email) verify
                                     div.admin
                                         a(href="/admin/" + user.email) admin
-                                            
-                            //- tr
-                            //-     form(id='reguser' action='/approveuser' method='post')
-                            //-         select(name="useremail")
-                            //-             option(value=user.email) #{user.email} 
-
-                            //-         select(name="userrole")
-                            //-             option(value="verify") Verify
-                            //-             option(value="delete") Delete
-                            //-             option(value="admin") Admin
-                            //-             input(type="submit" value="Go") 

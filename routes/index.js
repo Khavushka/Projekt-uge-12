@@ -153,4 +153,19 @@ router.get('/doing/:_id', async function(req, res, next){
   res.redirect('/showtask');
 })
 
+// donetasks
+
+router.get('/donetask', async function(req, res, next){
+  let pid = req.session.userid;
+  let donetasks = await handleTasks.getTask({pid: pid, status:{$eq:"done"}}, {sort: {title: 1}}); //Sorterer tasks med "do"
+  console.log(pid);
+  res.render('donetask', {
+    title: TITLE,
+    subtitle: 'Display Tasks',
+    authenticated: req.session && req.session.authenticated,
+    donetasks,
+    admin: req.session.role == "admin" ? true : false
+  });
+});
+
 module.exports = router;
