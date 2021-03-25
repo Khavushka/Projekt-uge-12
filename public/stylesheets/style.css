@@ -229,17 +229,16 @@ p {
 } */
 
 .column {
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
   border-radius: 3px;
   margin: 5px 5px;
   padding: 10px;
 }
 
-#columns{
+#columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-flow: dense;
   grid-gap: 20px;
   align-items: start;
-  }
-  
+}
