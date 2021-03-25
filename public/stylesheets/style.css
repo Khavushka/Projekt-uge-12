@@ -219,46 +219,26 @@ p {
 }
 
 /*----------------Show task--------------*/
-[draggable] {
+/* [draggable] {
   position: relative;
   -moz-user-select: -moz-none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -o-user-select: none;
     user-select: none;
-}
-
-/* #columns {
-  display: grid;
-  grid-auto-columns: 272px;
-  grid-auto-flow: column;
-  grid-gap: 8px;
-  height: 100vh;
-  overflow: auto;
 } */
 
 .column {
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
   border-radius: 3px;
   margin: 5px 5px;
   padding: 10px;
-  /* width: 260px; */
-  /* display: grid; */
 }
 
-/* 
-.column .card {
-  background-color: #FFF;
-  border-bottom: 1px solid #CCC;
-  padding: 6px 8px;
-  cursor: pointer;
-} */
-
-
-#columns{
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-auto-flow: dense;
-grid-gap: 20px;
-align-items: start;
+#columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+  grid-gap: 20px;
+  align-items: start;
 }

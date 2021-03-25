@@ -8,15 +8,15 @@ const CONPARAM = {useNewUrlParser:true, useUnifiedTopology: true};
 
 
 
-exports.getTask = async function (que, sort) {
+exports.getTask = async function (chk, sort) {
     await mongoose.connect(CONSTR, CONPARAM);
     const db = mongoose.connection;
     db.once("open", function() {
         console.log("connected to server by mongoose")
     });
-   
     try {
-        let tasks = await Task.find({}, null,{});  // await er asynkront og venter, til den får info
+        //console.log(req.session.userid);
+        let tasks = await Task.find(chk, null,{});  // await er asynkront og venter, til den får info
         if (sort === null)
         sort = {sort: -1};
         return tasks;
@@ -24,6 +24,7 @@ exports.getTask = async function (que, sort) {
         console.log(e);
     } db.close();
 }
+
 
 exports.postTask = async function (req) {
     await mongoose.connect(CONSTR, CONPARAM);
@@ -39,11 +40,12 @@ exports.postTask = async function (req) {
         title: req.body.title,
         description: req.body.description,  
         expires: req.body.expires,
-        pid: req.session._id,                  //skal svare til _id på den bruger der er logget ind
-        priority: req.body.priority,
-        status: req.body.status
+        pid: req.session.userid,                  //skal svare til _id på den bruger der er logget ind
+        priority: req.body.status, // starter en nyoprettet task ud som t
+        status: "do"
     });
-    console.log(req.session_id);
+    
+    console.log(req.session.userid);
     console.log(task);
 
     Task.create(task, function(error, savedDocument) { //create er en mongoose funktion
@@ -53,7 +55,7 @@ exports.postTask = async function (req) {
         });
 }
 
-//til at slette
+//til at slette tasks
 
 exports.deleteTask = async function (req){
     await mongoose.connect(CONSTR, CONPARAM);
@@ -67,5 +69,19 @@ exports.deleteTask = async function (req){
     .then(function(){console.log("Data deleted");})
     .catch(function(error){console.log(error); 
     })    
+    db.close();
+}
+
+exports.changeTaskStatus = async function (req) {
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    }); 
+    await Task.findOneAndUpdate({status:req.params.status}, {status: "done"})
+    .then(function(){console.log("Status changed");})
+    .catch(function(error){console.log(error); // Failure
+    })
+    
     db.close();
 }
