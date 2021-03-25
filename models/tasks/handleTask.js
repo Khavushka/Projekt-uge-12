@@ -61,7 +61,9 @@ exports.deleteTask = async function (req){
     db.once("open", function() {
         console.log("connected to server by mongoose")
     });
-    await User.findOneAndDelete({email: req.params.email})
+    console.log(req.params._id);
+    const taskId = req.params._id.toString().trim();
+    await Task.findByIdAndRemove(taskId)
     .then(function(){console.log("Data deleted");})
     .catch(function(error){console.log(error); 
     })    

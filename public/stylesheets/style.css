@@ -253,3 +253,8 @@ p {
   padding: 6px 8px;
   cursor: pointer;
 }
+
+.container{
+  display: flex;
+  flex-grow: 3;
+}

@@ -52,7 +52,7 @@ router.get('/delete/:email', async function(req, res, next){
 });
 
 //slet task
-router.get('/delete/:task', async function(req, res, next){
+router.get('/deleteTask/:_id', async function(req, res, next){
   handleTasks.deleteTask(req);
   res.redirect('/showtask');
 });
