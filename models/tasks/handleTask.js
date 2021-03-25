@@ -72,13 +72,43 @@ exports.deleteTask = async function (req){
     db.close();
 }
 
-exports.changeTaskStatus = async function (req) {
+exports.changeTaskDone = async function (req) {
     await mongoose.connect(CONSTR, CONPARAM);
     const db = mongoose.connection;
     db.once("open", function() {
         console.log("connected to server by mongoose")
-    }); 
-    await Task.findOneAndUpdate({status:req.params.status}, {status: "done"})
+    });
+    const taskId = req.params._id.toString().trim();
+    await Task.findOneAndUpdate(taskId, {status: "done"})
+    .then(function(){console.log("Status changed");})
+    .catch(function(error){console.log(error); // Failure
+    })
+    
+    db.close();
+}
+
+exports.changeTaskDoing = async function (req) {
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
+    const taskId = req.params._id.toString().trim();
+    await Task.findOneAndUpdate(taskId, {status: "doing"})
+    .then(function(){console.log("Status changed");})
+    .catch(function(error){console.log(error); // Failure
+    })
+    
+    db.close();
+}
+exports.changeTaskDo = async function (req) {
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
+    const taskId = req.params._id.toString().trim();
+    await Task.findOneAndUpdate(taskId, {status: "do"})
     .then(function(){console.log("Status changed");})
     .catch(function(error){console.log(error); // Failure
     })

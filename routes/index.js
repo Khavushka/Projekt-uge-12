@@ -138,18 +138,18 @@ router.get('/deleteTask/:_id', async function(req, res, next){
 
 //status
 
-router.get('/todoTask/:status', async function(req, res, next){
-  handleTasks.changeTaskStatus(req);
+router.get('/done/:_id', async function(req, res, next){
+  handleTasks.changeTaskDone(req);
   res.redirect('/showtask');
 });
 
-router.get('/doingTask/:status', async function(req, res, next){
-  handleTasks.changeTaskStatus(req);
+router.get('/todo/:_id', async function(req, res, next){
+  handleTasks.changeTaskDo(req);
   res.redirect('/showtask');
 });
 
-router.get('/doneTask/:status', async function(req, res, next){
-  handleTasks.changeTaskStatus(req);
+router.get('/doing/:_id', async function(req, res, next){
+  handleTasks.changeTaskDoing(req);
   res.redirect('/showtask');
 })
 

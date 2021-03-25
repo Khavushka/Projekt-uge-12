@@ -12,17 +12,15 @@ block content
                     each task in tasks
                         tr
                             td #{task.title}
-                            td #{task._id}
                             td #{task.description}
                             td #{task.expires}
-                            td #{task.pid}
                             td #{task.priority}
                             td #{task.status}
-                            td.todo
+                            td
                                 a(href="/todo/" + task._id) do
-                            td.doing
+                            td
                                 a(href="/doing/" + task._id) doing
-                            td.done
+                            td
                                 a(href="/done/" + task._id) done
                             td.delete
                                 a(href="/deleteTask/" + task._id) delete
@@ -30,17 +28,15 @@ block content
                     each task in dtasks
                         tr
                             td #{task.title}
-                            td #{task._id}
                             td #{task.description}
                             td #{task.expires}
-                            td #{task.pid}
                             td #{task.priority}
                             td #{task.status}
-                            td.todo
+                            td
                                 a(href="/todo/" + task._id) do
-                            td.doing
+                            td
                                 a(href="/doing/" + task._id) doing
-                            td.done
+                            td
                                 a(href="/done/" + task._id) done
                             td.delete
                                 a(href="/deleteTask/" + task._id) delete
