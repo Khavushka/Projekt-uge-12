@@ -52,3 +52,18 @@ exports.postTask = async function (req) {
             } db.close();
         });
 }
+
+//til at slette
+
+exports.deleteTask = async function (req){
+    await mongoose.connect(CONSTR, CONPARAM);
+    const db = mongoose.connection;
+    db.once("open", function() {
+        console.log("connected to server by mongoose")
+    });
+    await User.findOneAndDelete({email: req.params.email})
+    .then(function(){console.log("Data deleted");})
+    .catch(function(error){console.log(error); 
+    })    
+    db.close();
+}
